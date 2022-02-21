@@ -4,7 +4,7 @@ updated at 9/16/2021
 updated at 2/22/2022
 
 """
-from emerald import Emerald
+from mother import Mother
 from old.Libraries import *
 from old.Interfaces import *
 from old import config, sleep, time, datetime, process_time, telegram, threading
@@ -26,7 +26,7 @@ class StreamIStrategies(Stream):
                 print('1min', datetime.fromtimestamp(time()))
                 data = candles(symbol=self.symbol, number=1, unit='m', limit=10)
                 if data[0]:
-                    emerald = Emerald(data=data[1], coin_id=self.coin_id, timeframe_id=5, bot_ins=_bot_ins)
+                    emerald = Mother(data=data[1], coin_id=self.coin_id, timeframe_id=5, bot_ins=_bot_ins)
                     emerald.signal()
                 delay = process_time()
             sleep(abs(60 - delay))

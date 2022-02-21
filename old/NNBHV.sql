@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2021 at 12:25 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.10
+-- Generation Time: Feb 22, 2022 at 12:09 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `aitrader`
+-- Database: `NNBHV`
 --
 
 -- --------------------------------------------------------
@@ -38,10 +38,7 @@ CREATE TABLE `analysis` (
 --
 
 INSERT INTO `analysis` (`id`, `name`, `description`) VALUES
-(1, 'emerald', 'This analysis optimized for 1min timeframe and work for all coins'),
-(2, 'ruby', 'This analysis optimized for 4hour timeframe and work just for ETHUSDT coin'),
-(3, 'diamond', 'This analysis optimized just for 4hour timeframe and work with BTCUSDT, ETHUSDT, ADAUSDT, BCHUSDT, ETCUDT'),
-(4, 'palladium', 'this analysis was optimized for 1hour timeframe and ETHUSDT ');
+(1, 'mother', 'test');
 
 -- --------------------------------------------------------
 
@@ -131,20 +128,6 @@ INSERT INTO `plans` (`id`, `plan`, `cost`, `duration`, `description`, `strategy_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `plan_payments`
---
-
-CREATE TABLE `plan_payments` (
-  `username` char(30) NOT NULL,
-  `plan_id` int(5) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
-  `cost` double NOT NULL,
-  `is_pay` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `recommendations`
 --
 
@@ -202,40 +185,6 @@ CREATE TABLE `trade` (
   `signal_time` timestamp NULL DEFAULT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tutorials`
---
-
-CREATE TABLE `tutorials` (
-  `name` char(10) NOT NULL,
-  `category` int(5) NOT NULL,
-  `media` text NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tutorials_category`
---
-
-CREATE TABLE `tutorials_category` (
-  `id` int(5) NOT NULL,
-  `name` char(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tutorials_category`
---
-
-INSERT INTO `tutorials_category` (`id`, `name`) VALUES
-(1, 'exchange'),
-(2, 'wallet'),
-(3, 'technical'),
-(4, 'bot');
 
 -- --------------------------------------------------------
 
@@ -334,13 +283,6 @@ ALTER TABLE `plans`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `plan_payments`
---
-ALTER TABLE `plan_payments`
-  ADD KEY `plan_payments_username` (`username`),
-  ADD KEY `plan_payments_plan_id` (`plan_id`);
-
---
 -- Indexes for table `recommendations`
 --
 ALTER TABLE `recommendations`
@@ -362,20 +304,6 @@ ALTER TABLE `trade`
   ADD PRIMARY KEY (`id`),
   ADD KEY `trade_user_setting_id` (`user_setting_id`),
   ADD KEY `trade_analysis_id` (`analysis_id`);
-
---
--- Indexes for table `tutorials`
---
-ALTER TABLE `tutorials`
-  ADD PRIMARY KEY (`name`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD KEY `fk_category_id` (`category`);
-
---
--- Indexes for table `tutorials_category`
---
-ALTER TABLE `tutorials_category`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -413,7 +341,7 @@ ALTER TABLE `watchlist`
 -- AUTO_INCREMENT for table `analysis`
 --
 ALTER TABLE `analysis`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `coins`
@@ -431,7 +359,7 @@ ALTER TABLE `demo_account`
 -- AUTO_INCREMENT for table `exchanges`
 --
 ALTER TABLE `exchanges`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `plans`
@@ -449,19 +377,13 @@ ALTER TABLE `recommendations`
 -- AUTO_INCREMENT for table `timeframes`
 --
 ALTER TABLE `timeframes`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `trade`
 --
 ALTER TABLE `trade`
   MODIFY `id` int(80) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tutorials_category`
---
-ALTER TABLE `tutorials_category`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_settings`
@@ -486,13 +408,6 @@ ALTER TABLE `demo_account`
   ADD CONSTRAINT `demo_account_username_fk` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
 
 --
--- Constraints for table `plan_payments`
---
-ALTER TABLE `plan_payments`
-  ADD CONSTRAINT `plan_payments_plan_id` FOREIGN KEY (`plan_id`) REFERENCES `plans` (`id`),
-  ADD CONSTRAINT `plan_payments_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
-
---
 -- Constraints for table `recommendations`
 --
 ALTER TABLE `recommendations`
@@ -506,12 +421,6 @@ ALTER TABLE `recommendations`
 ALTER TABLE `trade`
   ADD CONSTRAINT `trade_analysis_id` FOREIGN KEY (`analysis_id`) REFERENCES `analysis` (`id`),
   ADD CONSTRAINT `trade_user_setting_id` FOREIGN KEY (`user_setting_id`) REFERENCES `user_settings` (`id`);
-
---
--- Constraints for table `tutorials`
---
-ALTER TABLE `tutorials`
-  ADD CONSTRAINT `fk_category_id` FOREIGN KEY (`category`) REFERENCES `tutorials_category` (`id`);
 
 --
 -- Constraints for table `users`

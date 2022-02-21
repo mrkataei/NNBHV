@@ -7,7 +7,7 @@ from old.Test import StrategyTaster
 from old import datetime, sleep, np, os, types, apihelper
 from old.Inc import functions
 from old.Libraries import trans, binance_candles, activate
-from old.Analysis import Emerald
+from old.Analysis import Mother
 from old.Account import User, BitfinexClient, DemoClient, Nobitex
 from old.Interfaces import Telegram
 
@@ -43,8 +43,8 @@ def get_analysis_class(analysis: str, symbol: str, timeframe_id: int, number: in
         return None
     else:
         data = data[1]
-    if analysis == 'emerald':
-        return Emerald(data=data, coin_id=coin_id, timeframe_id=timeframe_id, bot_ins=1).get_recommendations()
+    if analysis == 'mother':
+        return Mother(data=data, coin_id=coin_id, timeframe_id=timeframe_id, bot_ins=1).get_recommendations()
     else:
         return None
 

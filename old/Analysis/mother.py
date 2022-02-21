@@ -16,7 +16,7 @@ def _get_ohcl(candle_sticks):
     return c_open, c_high, c_close, c_low
 
 
-class Emerald(Strategy):
+class Mother(Strategy):
     __bullish_patterns = ['hammer', 'inverted_hammer', 'belt_hold_bullish', 'engulfing_bullish', 'harami_bullish',
                           'harami_cross_bullish', 'piercing_line', 'doji_star_bullish', 'meeting_line_bullish',
                           'three_white_soldiers', 'morning_star', 'morning_doji_star', 'abandoned_baby_bullish',

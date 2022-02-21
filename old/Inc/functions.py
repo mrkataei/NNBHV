@@ -309,8 +309,8 @@ def set_user_setting(username: str, public: str, secret: str, exchange_id: int):
     """
     query = "INSERT INTO user_settings (username, public, secret, exchange_id) VALUES (%s, %s , %s ,%s)"
     val = (username, public, secret, exchange_id)
-    mysqlError, result = insert_query(query=query, values=val)
-    return mysqlError, result
+    error, result = insert_query(query=query, values=val)
+    return error, result
 
 
 def get_user_exchanges(chat_id: str):
@@ -336,8 +336,8 @@ def set_watchlist(user_setting_id: int, coin_id: int, username: str, analysis_id
     query = "INSERT INTO watchlist(user_setting_id, coin_id, username, analysis_id, amount) " \
             "VALUES (%s, %s, %s , %s ,%s)"
     val = (user_setting_id, coin_id, username, analysis_id, amount)
-    mysqlError, result = insert_query(query=query, values=val)
-    return mysqlError, result
+    error, result = insert_query(query=query, values=val)
+    return error, result
 
 
 def get_exchanges(exchange_id: int = -1):
@@ -570,8 +570,8 @@ def set_trade_history(user_setting_id: int, coin: str, analysis_id, position: st
         query = "INSERT INTO trade (user_setting_id, coin, analysis_id, position, status," \
                 " signal_time) VALUES (%s, %s , %s ,%s , %s, %s)"
         val = (user_setting_id, coin, analysis_id, position, status, signal_time)
-    mysqlError, result = insert_query(query=query, values=val)
-    return mysqlError, result
+    error, result = insert_query(query=query, values=val)
+    return error, result
 
 
 def get_users_submit_order_detail(analysis_id: int, coin_id: int):
@@ -608,8 +608,8 @@ def get_demo_account_assets(chat_id: str):
 def create_demo_account(username: str):
     query = "INSERT INTO demo_account (username) VALUES (%s)"
     val = (username,)
-    mysqlError, result = insert_query(query=query, values=val)
-    return mysqlError, result
+    error, result = insert_query(query=query, values=val)
+    return error, result
 
 
 def get_users_validation_date():
