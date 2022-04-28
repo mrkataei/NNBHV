@@ -2,22 +2,6 @@ from django.contrib import admin
 from . import models
 
 
-# @admin.register(models.Project)
-# class Projects(admin.ModelAdmin):
-#     list_display = ('name', 'description', 'start_time', 'end_time', 'user')
-#     list_filter = ('user',)
-#     fieldsets = (
-#         ('information', {
-#             'fields': ('name', 'description')
-#         }),
-#         ('history', {
-#             'fields': ('start_time', 'end_time')
-#         }),
-#         ('owner', {
-#             'fields': ('user',)
-#         })
-#     )
-
 @admin.register(models.Plan)
 class Plan(admin.ModelAdmin):
     list_display = ('name', 'duration_day', 'strategy_number', 'exchange_number', 'cost')
@@ -46,11 +30,16 @@ class DemoInline(admin.TabularInline):
 
 @admin.register(models.Exchange)
 class Exchange(admin.ModelAdmin):
+    list_display = ('name',)
+
+
+@admin.register(models.UserExchange)
+class UserExchange(admin.ModelAdmin):
     list_display = ('name', 'user')
 
 
 class ExchangeInline(admin.TabularInline):
-    model = models.Exchange
+    model = models.UserExchange
     extra = 2
 
 

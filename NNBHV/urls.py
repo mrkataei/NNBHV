@@ -20,6 +20,7 @@ from rest_framework.authtoken import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
+    path('startegy', include('strategy.urls')),
 
     path('api-token-auth', views.obtain_auth_token),  # this is for authorize client post method
     path('api-auth', include('rest_framework.urls')),  # this is for browser

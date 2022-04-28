@@ -26,12 +26,19 @@ class User(AbstractUser):
 
 class Exchange(models.Model):
     name = models.CharField(max_length=30, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class UserExchange(models.Model):
+    name = models.ForeignKey(Exchange, on_delete=models.CASCADE, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     public = models.CharField(max_length=300)
     secret = models.CharField(max_length=300)
 
     def __str__(self):
-        return self.name
+        return self.user.username
 
 
 class Coin(models.Model):
