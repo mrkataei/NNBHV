@@ -1,1 +1,0 @@
-from strategy_tester import StrategyTaster
