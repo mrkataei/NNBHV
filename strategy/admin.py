@@ -9,9 +9,6 @@ class Strategy(admin.ModelAdmin):
 
 @admin.register(models.UserStrategies)
 class UserStrategies(admin.ModelAdmin):
-    list_display = ('user', 'strategy', 'exchange', 'coin', 'trade_percent')
+    list_display = ('user', 'strategy', 'exchange', 'trade_percent')
 
 
-@admin.register(models.Coin)
-class Coin(admin.ModelAdmin):
-    list_display = ('name',)

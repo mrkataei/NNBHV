@@ -22,16 +22,3 @@ def broadcast_messages(coin_id: int, analysis_id: int, timeframe_id: int, positi
                                  parse_mode='Markdown')
         except Exception as e:
             print(e)
-
-
-def admin_broadcast(message: str, chat_ids, bot_ins):
-    for chat_id in chat_ids:
-        try:
-            bot_ins.send_message(chat_id=int(chat_id[0]), text=message)
-        except Exception as e:
-            print(e)
-            continue
-
-
-def admin_send_message(message: str, chat_id, bot_ins):
-    bot_ins.send_message(chat_id=int(chat_id), text=message)
