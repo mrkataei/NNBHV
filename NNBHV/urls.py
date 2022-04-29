@@ -19,8 +19,12 @@ from rest_framework.authtoken import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('user/', include('user.urls')),
+
     path('strategy/', include('strategy.urls')),
+
+    path('back-test/', include('backtest.urls')),
 
     path('api-token-auth', views.obtain_auth_token),  # this is for authorize client post method
     path('api-auth', include('rest_framework.urls')),  # this is for browser

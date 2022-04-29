@@ -13,6 +13,7 @@ class Strategies(models.Model):
 
 
 class Coin(models.Model):
+    objects = models.Manager()
     name = models.CharField(primary_key=True, max_length=150, unique=True)
 
     def __str__(self):
@@ -32,6 +33,7 @@ class UserStrategies(models.Model):
 
 
 class Signal(models.Model):
+    objects = models.Manager()
     position = (
         ('S', 'Sell'),
         ('B', 'Buy')
@@ -46,21 +48,3 @@ class Signal(models.Model):
     def __str__(self):
         return self.strategy
 
-
-class Trade(models.Model):
-    position = (
-        ('S', 'Sell'),
-        ('B', 'Buy')
-    )
-    strategy = models.CharField(max_length=15, blank=False)
-    coin = models.CharField(max_length=15, blank=False)
-    timeframe = models.CharField(max_length=15, blank=False)
-    status = models.CharField(max_length=15, blank=False)
-    position = models.CharField(max_length=1, choices=position)
-    price = models.FloatField()
-    amount = models.FloatField()
-    create_at = models.DateTimeField(auto_now=True)
-    signal_at = models.DateTimeField()
-
-    def __str__(self):
-        return self.strategy

@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'backtest.apps.BacktestConfig',
+    'trade.apps.TradeConfig',
     'strategy.apps.StrategyConfig',
     'user.apps.UserConfig',
     'django.contrib.admin',
